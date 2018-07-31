@@ -4,7 +4,7 @@ import 'dart:convert'; // 数据转换
 import 'dart:async'; // 异步处理
 import 'package:http/http.dart' as http;
 import '../config/httpHeaders.dart'; // 配置信息
-
+import '../pages/articleDetail.dart';
 
 class HomePage extends StatefulWidget {
   @override
