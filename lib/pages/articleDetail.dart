@@ -40,6 +40,7 @@ class ArticleDetailState extends State<ArticleDetail> {
         future: getContent(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            var content = snapshot.data['content'];
             return new Scaffold(
                 appBar: new AppBar(
                   backgroundColor: new Color.fromRGBO(244, 245, 245, 1.0),
@@ -109,8 +110,14 @@ class ArticleDetailState extends State<ArticleDetail> {
                     ],
                   ),
                 ),
-                body: new Container(
-                  child: new Text(snapshot.data.toString()),
+                body: new ListView(
+                  children: <Widget>[
+                    new Container(
+                        color: Colors.white,
+                        child: new HtmlView(
+                          data: content,
+                        ))
+                  ],
                 ));
           } else if (snapshot.hasError) {
             return new Container(
