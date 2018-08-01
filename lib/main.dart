@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/index.dart';
+import 'pages/search.dart';
+import 'pages/activities.dart';
 
 void main() => runApp(new MyApp());
 
@@ -16,7 +18,14 @@ class MyApp extends StatelessWidget {
           primaryIconTheme: new IconThemeData(color: Colors.blue),    //主要icon样式，如头部返回icon按钮
           indicatorColor: Colors.blue,    //设置tab指示器颜色
           iconTheme: new IconThemeData(size: 18.0),   //设置icon样式
-          primaryTextTheme: new TextTheme(title: new TextStyle(color: Colors.black, fontSize: 16.0))), //设置文本样式
+          primaryTextTheme: new TextTheme(
+            title: new TextStyle(color: Colors.black, fontSize: 16.0)
+          )
+      ),
+      routes: <String, WidgetBuilder>{
+        '/search': (BuildContext context) => SearchPage(),
+        '/activities': (BuildContext context) => ActivitiesPage(),
+      },
     );
   }
 }

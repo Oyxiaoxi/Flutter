@@ -18,6 +18,7 @@ class DiscoveryPageState extends State<DiscoveryPage> {
     return http.get(Uri.encodeFull(
         'https://timeline-merger-ms.juejin.im/v1/get_entry_by_rank?src=${httpHeaders['X-Juejin-Src']}&uid=${httpHeaders['X-Juejin-Uid']}&device_id=${httpHeaders['X-Juejin-Client']}&token=${httpHeaders['X-Juejin-Token']}&limit=20&category=all&recomment=1'));
   }
+  
 
   @override
   void initState() {
