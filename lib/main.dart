@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 import 'pages/index.dart';
 import 'pages/search.dart';
 import 'pages/activities.dart';
+import 'actions/actions.dart';
+import 'reducers/reducers.dart';
+import 'pages/signin.dart';
 
-void main() => runApp(new MyApp());
+void main(){
+  final userInfo = new Store<Map>(getUserInfo, initialState: {});
+
+  runApp(new MyApp(
+    store: userInfo,
+  ));
+
+}
 
 class MyApp extends StatelessWidget {
+  final Store<Map> store;
+
+  MyApp({Key key, this.store}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -25,6 +41,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/search': (BuildContext context) => SearchPage(),
         '/activities': (BuildContext context) => ActivitiesPage(),
+        '/signin': (BuildContext context) => SignInPage(),
       },
     );
   }

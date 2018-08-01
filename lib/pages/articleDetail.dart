@@ -18,8 +18,6 @@ class ArticleDetail extends StatefulWidget {
 }
 
 class ArticleDetailState extends State<ArticleDetail> {
-  Map content;
-
   Future getContent() async {
     final String url =
         'https://post-storage-api-ms.juejin.im/v1/getDetailData?uid=${httpHeaders['X-Juejin-Src']}&device_id=${httpHeaders['X-Juejin-Client']}&token=${httpHeaders['X-Juejin-Token']}&src=${httpHeaders['X-Juejin-Src']}&type=entryView&postId=${widget
@@ -28,7 +26,7 @@ class ArticleDetailState extends State<ArticleDetail> {
     if (response.statusCode == 200) {
       return json.decode(response.body)['d'];
     } else {
-      throw Exception('Failed to load post');
+      throw Exception('Failed to load content');
     }
   }
 

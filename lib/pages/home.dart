@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:convert'; // 数据转换
-import 'dart:async'; // 异步处理
+import 'dart:convert';
+import 'dart:async';
 import 'package:http/http.dart' as http;
-import '../config/httpHeaders.dart'; // 配置信息
-import '../pages/articleDetail.dart';
+import '../config/httpHeaders.dart';
+import 'articleDetail.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -46,57 +46,60 @@ class HomePageState extends State<HomePage> {
   }
 }
 
+//创建页面
 class CreatePage extends StatefulWidget {
   final List tabList;
+
   @override
   CreatePage({Key key, this.tabList}) : super(key: key);
+
   CreatePageState createState() => new CreatePageState();
 }
 
-class CreatePageState extends State<CreatePage> with SingleTickerProviderStateMixin {
+class CreatePageState extends State<CreatePage>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     //TODO: implement build
     return new DefaultTabController(
-      length: widget.tabList.length,
-      child: new Scaffold(
-        appBar: new AppBar(
-          backgroundColor: new Color.fromRGBO(244, 245, 245, 1.0),
-          automaticallyImplyLeading: false,
-          titleSpacing: 0.0,
-          title: new TabBar(
-              indicatorSize: TabBarIndicatorSize.label,
-              isScrollable: true,
-              labelColor: Colors.blue,
-              unselectedLabelColor: Colors.grey,
-              tabs: widget.tabList.map((tab) {
-                return new Tab(
-                  text: tab['name'],
-                );
-              }).toList()),
-          actions: <Widget>[
-            new IconButton(
-                icon: new Icon(
-                  Icons.add,
-                  color: Colors.blue,
-                ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/shareArticle');
-            })
-          ],
-        ),
-        body: new TabBarView(
-          children: widget.tabList.map((cate) {
-          return ArticleLists(
-            categories: cate,
-          );
-        }).toList()),
-      )
-    );
+        length: widget.tabList.length,
+        child: new Scaffold(
+          appBar: new AppBar(
+            backgroundColor: new Color.fromRGBO(244, 245, 245, 1.0),
+            automaticallyImplyLeading: false,
+            titleSpacing: 0.0,
+            title: new TabBar(
+                indicatorSize: TabBarIndicatorSize.label,
+                isScrollable: true,
+                labelColor: Colors.blue,
+                unselectedLabelColor: Colors.grey,
+                tabs: widget.tabList.map((tab) {
+                  return new Tab(
+                    text: tab['name'],
+                  );
+                }).toList()),
+            actions: <Widget>[
+              new IconButton(
+                  icon: new Icon(
+                    Icons.add,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/shareArticle');
+                  })
+            ],
+          ),
+          body: new TabBarView(
+              children: widget.tabList.map((cate) {
+            return ArticleLists(
+              categories: cate,
+            );
+          }).toList()),
+        ));
   }
 }
 
-class ArticleLists extends StatefulWidget{
+class ArticleLists extends StatefulWidget {
   final Map categories;
 
   @override
@@ -127,6 +130,7 @@ class ArticleListsState extends State<ArticleLists> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             articleList = snapshot.data['d']['entrylist'];
+            print(articleList);
             return new ListView.builder(
                 itemCount: articleList.length,
                 itemBuilder: (context, index) {
@@ -142,6 +146,7 @@ class ArticleListsState extends State<ArticleLists> {
         });
   }
 
+//单个文章
   Widget createItem(articleInfo) {
     var objectId = articleInfo['originalUrl']
         .substring(articleInfo['originalUrl'].lastIndexOf('/') + 1);
@@ -180,7 +185,6 @@ class ArticleListsState extends State<ArticleLists> {
                         )
                       ],
                     )),
-                //控制是否显示tag，及显示多少个    
                 tags.isNotEmpty
                     ? (tags.length >= 2
                         ? new Row(
@@ -248,7 +252,4 @@ class ArticleListsState extends State<ArticleLists> {
       color: Colors.white,
     );
   }
-
-
 }
-

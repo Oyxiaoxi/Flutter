@@ -12,32 +12,31 @@ class IndexPage extends StatefulWidget {
 }
 
 class IndexPageState extends State<IndexPage> {
+//  定义底部导航列表
   final List<BottomNavigationBarItem> bottomTabs = [
     new BottomNavigationBarItem(
       icon: new Icon(CupertinoIcons.home),
       title: new Text('首页'),
     ),
     new BottomNavigationBarItem(
+        icon: new Icon(CupertinoIcons.search), title: new Text('发现')),
+    new BottomNavigationBarItem(
         icon: new Icon(CupertinoIcons.conversation_bubble),
         title: new Text('沸点')),
     new BottomNavigationBarItem(
-        icon: new Icon(CupertinoIcons.search), title: new Text('发现')),
-    new BottomNavigationBarItem(
-        icon: new Icon(CupertinoIcons.book), title: new Text('小册子')),
+        icon: new Icon(CupertinoIcons.book), title: new Text('小册')),
     new BottomNavigationBarItem(
         icon: new Icon(CupertinoIcons.profile_circled), title: new Text('我'))
   ];
-
-  final List tabBodies = [
+  final List<Widget> tabBodies = [
     new HomePage(),
-    new HotPage(),
     new DiscoveryPage(),
+    new HotPage(),
     new BookPage(),
     new MinePage()
   ];
-
-  int currentIndex = 0;
-  var currentPage;
+  int currentIndex = 0; //当前索引
+  Widget currentPage; //当前页面
 
   @override
   void initState() {
@@ -49,7 +48,6 @@ class IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      backgroundColor: new Color.fromRGBO(244, 245, 245, 1.0),
       bottomNavigationBar: new BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
