@@ -99,7 +99,7 @@ which flutter && flutter doctor
 
 >&#160; &#160;当代码框里输入 stl 的时候，可以自动弹出创建无状态控件的模板选项，而输入 stf 的时，就会弹出创建有状态 Widget 的模板选项。代码格式化的时候，括号内外的逗号都会影响格式化时换行的位置。  
 
-#### 无状态StatelessWidget
+### 无状态StatelessWidget
 
 **继承 StatelessWidget，通过 build 方法返回一个布局好的控件。**
 
@@ -113,22 +113,24 @@ import 'package:flutter/material.dart';
 class DEMOWidget extends StatelessWidget {
   final String text;
 
-  //数据可以通过构造方法传递进来
+  // 数据可以通过构造方法传递进来
   DEMOWidget(this.text);
 
   @override
   Widget build(BuildContext context) {
-    //这里返回你需要的控件
-    //这里末尾有没有的逗号，对于格式化代码而已是不一样的。
+    // 这里返回你需要的控件
+    // 这里末尾有没有的逗号，对于格式化代码而已是不一样的。
     return Container(
-      //白色背景
+      // 白色背景
       color: Colors.white,
-      //Dart语法中，?? 表示如果text为空，就返回尾号后的内容。
+      // Dart语法中，?? 表示如果text为空，就返回尾号后的内容。
       child: Text(text ?? "这就是无状态DMEO"),
     );
   }
 }
 ```
+
+
 
 
 
