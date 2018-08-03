@@ -97,7 +97,38 @@ which flutter && flutter doctor
 
 &#160; &#160;&#160; &#160;Widget 分为 有状态 和 无状态 两种，在 Flutter 中每个页面都是一帧。无状态就是保持在那一帧。而有状态的 Widget 当数据更新时，其实是绘制了新的 Widget，只是 State 实现了跨帧的数据同步保存。
 
->&#160; &#160;&#160; &#160;当代码框里输入 stl 的时候，可以自动弹出创建无状态控件的模板选项，而输入 stf 的时，就会弹出创建有状态 Widget 的模板选项。代码格式化的时候，括号内外的逗号都会影响格式化时换行的位置。  
+>&#160; &#160;当代码框里输入 stl 的时候，可以自动弹出创建无状态控件的模板选项，而输入 stf 的时，就会弹出创建有状态 Widget 的模板选项。代码格式化的时候，括号内外的逗号都会影响格式化时换行的位置。  
+
+#### 无状态StatelessWidget
+
+**继承 StatelessWidget，通过 build 方法返回一个布局好的控件。**
+
+&#160; &#160;&#160; &#160;Widget 和 Widget 之间通过 child: 进行嵌套。其中有的 Widget 只能有一个 child，比如下方的 Container ；有的 Widget 可以多个 child ，也就是children:，比如` Colum 布局。
+
+代码便是 Container Widget 嵌套了 Text Widget。
+
+```dart
+import 'package:flutter/material.dart';
+
+class DEMOWidget extends StatelessWidget {
+  final String text;
+
+  //数据可以通过构造方法传递进来
+  DEMOWidget(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    //这里返回你需要的控件
+    //这里末尾有没有的逗号，对于格式化代码而已是不一样的。
+    return Container(
+      //白色背景
+      color: Colors.white,
+      //Dart语法中，?? 表示如果text为空，就返回尾号后的内容。
+      child: Text(text ?? "这就是无状态DMEO"),
+    );
+  }
+}
+```
 
 
 
