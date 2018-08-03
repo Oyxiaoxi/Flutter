@@ -135,9 +135,9 @@ class DEMOWidget extends StatelessWidget {
 > &#160;&#160; 你需要创建管理的是主要是 State ， 通过 State 的 build 方法去构建控件。在 State 中，你可以动态改变数据，这类似 MVVM 实现，在 setState 之后，改变的数据会触发 Widget 重新构建刷新。而下方代码中，是通过延两秒之后，让文本显示为 "这就变了数值"。
 
 h6 State 中主要的声明周期有  
-- **initState** ：初始化，理论上只有初始化一次，第二篇中会说特殊情况下。  
-- **didChangeDependencies** ：在 initState 之后调用，此时可以获取其他 State 。  
-- **dispose** : 销毁，只会调用一次。
+* **initState** ：初始化，理论上只有初始化一次，第二篇中会说特殊情况下。  
+* **didChangeDependencies** ：在 initState 之后调用，此时可以获取其他 State 。  
+* **dispose** : 销毁，只会调用一次。
 
 >&#160;&#160; 关注点只要在：创建你的 StatelessWidget 或者 StatefulWidget 而已。你需要的就是在 build 中堆积你的布局，然后把数据添加到 Widget 中，最后通过 setState 改变数据，从而实现画面变化。
 
