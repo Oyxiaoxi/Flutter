@@ -134,7 +134,7 @@ class DEMOWidget extends StatelessWidget {
 
 > &#160;&#160; 你需要创建管理的是主要是 State ， 通过 State 的 build 方法去构建控件。在 State 中，你可以动态改变数据，这类似 MVVM 实现，在 setState 之后，改变的数据会触发 Widget 重新构建刷新。而下方代码中，是通过延两秒之后，让文本显示为 "这就变了数值"。
 
-h6 State 中主要的声明周期有  
+State 中主要的声明周期有  
 * **initState** ：初始化，理论上只有初始化一次，第二篇中会说特殊情况下。  
 * **didChangeDependencies** ：在 initState 之后调用，此时可以获取其他 State 。  
 * **dispose** : 销毁，只会调用一次。
@@ -192,6 +192,71 @@ class _DemoStateWidgetState extends State<DemoStateWidget> {
     );
   }
 }
+```
+
+### Flutter 布局
+
+> Flutter 中拥有需要将近30种内置的 布局Widget，其中常用有 Container、Padding、Center、Flex、Stack、Row、Colum、ListView 等。
+
+|类型|作用特点|
+|:---:|:-----:| 
+|Container|只有一个子 Widget。默认充满，包含了padding、margin、color、宽高、decoration 等配置。|
+|Padding|只有一个子 Widget。只用于设置Padding，常用于嵌套child，给child设置padding。|
+|Center|只有一个子 Widget。只用于居中显示，常用于嵌套child，给child设置居中。|
+|Stack|可以有多个子 Widget。 子Widget堆叠在一起。|
+|Colum|可以有多个子 Widget。垂直布局。|
+|Row|可以有多个子 Widget。水平布局。|
+|Expanded|只有一个子 Widget。在 Colum 和 Row 中充满。|
+|ListView|可以有多个子 Widget。|
+
+> Container ：最常用的默认布局！只能包含一个child:，支持配置 padding,margin,color,width,height,decoration（一般配置边框和阴影）等配置，在 Flutter 中，不是所有的控件都有 width、height、padding、margin、color 等属性，所以才会有 Padding、Center 等 Widget 的存在。
+
+```dart
+new Container(
+    // 四周10大小的maring
+    margin: EdgeInsets.all(10.0),
+    height: 120.0,
+    width: 500.0,
+    // 透明黑色遮罩
+    decoration: new BoxDecoration(
+        // 弧度为4.0
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        // 设置了decoration的color，就不能设置Container的color。
+        color: Colors.black,
+        // 边框
+        border: new Border.all(color: Color(GSYColors.subTextColor), width: 0.3)
+    ),
+    child:new Text("Container")
+);
+```
+
+> Colum、Row 绝对是必备布局， 横竖布局也是日常中最常见的场景。它们常用的有这些属性配置：主轴方向是 start 或 center 等；副轴方向方向是 start 或 center 等；mainAxisSize 是充满最大尺寸，或者只根据子 Widget 显示最小尺寸。
+
+```dart
+//主轴方向，Colum的竖向、Row我的横向
+mainAxisAlignment: MainAxisAlignment.start, 
+//默认是最大充满、还是根据child显示最小大小
+mainAxisSize: MainAxisSize.max,
+//副轴方向，Colum的横向、Row我的竖向
+crossAxisAlignment :CrossAxisAlignment.center,
+```
+
+> Expanded 在 Colum 和 Row 中代表着平均充满，当有两个存在的时候默认均分充满。同时页可以设置 flex 属性决定比例。
+
+```dart
+new Column(
+    // 主轴居中,即是竖直向居中
+    mainAxisAlignment: MainAxisAlignment.center,
+    // 大小按照最小显示
+    mainAxisSize : MainAxisSize.min,
+    // 横向也居中
+    crossAxisAlignment : CrossAxisAlignment.center,
+    children: <Widget>[
+    // flex默认为1
+    new Expanded(child: new Text("1111"), flex: 2,),
+    new Expanded(child: new Text("2222")),
+    ],
+);
 ```
 
 
