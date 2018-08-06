@@ -369,3 +369,121 @@ new Column(
 |TextField|文本输入框 ：new TextField(controller: //文本控制器, obscureText: "hint文本");|
 |Image|图片加载: new FadeInImage.assetNetwork( placeholder: "预览图", fit: BoxFit.fitWidth, image: "url");|
 |FlatButton|按键点击: new FlatButton(onPressed: () {},child: new Container());|
+
+
+### Flutter Animation
+* 透明度渐变
+```dart 
+Animation<double> opacity = Tween<double>(
+    begin: 0.0,
+    end: 1.0,
+).animate(
+    CurvedAnimation(
+        parent: _controller,
+        curve: Interval(
+        0.0,
+        0.1,
+        curve: Curves.easeIn,
+        ),
+    ),
+);
+```
+
+* 翻转
+```dart 
+Animation<double> rotate = Tween<double>(
+    begin: 0.0,
+    end: math.pi * 2,
+).animate(
+    CurvedAnimation(
+    parent: _controller,
+    curve: Interval(
+        0.0,
+        0.2,
+        curve: Curves.ease,
+        ),
+    ),
+);
+```
+
+* 位移
+```dart
+Animation<EdgeInsets> movement = EdgeInsetsTween(
+    begin: EdgeInsets.only(top: 0.0),
+    end: EdgeInsets.only(top: 100.0),
+).animate(
+    CurvedAnimation(
+    parent: _controller,
+    curve: Interval(
+        0.2,
+        0.375,
+        curve: Curves.fastOutSlowIn,
+        ),
+    ),
+);
+```
+
+* 方形变圆
+```dart 
+Animation<BorderRadius> radius = BorderRadiusTween(
+    begin: BorderRadius.circular(0.0),
+    end: BorderRadius.circular(100.0),
+).animate(
+    CurvedAnimation(
+    parent: _controller,
+    curve: Interval(
+        0.5,
+        0.75,
+        curve: Curves.ease,
+        ),
+    ),
+);
+```
+
+* 颜色渐变
+```dart
+Animation<Color> color = ColorTween(
+    begin: Colors.blue[300],
+    end: Colors.blue[900],
+).animate(
+    CurvedAnimation(
+    parent: _controller,
+    curve: Interval(
+        0.5,
+        0.75,
+        curve: Curves.linear,
+        ),
+    ),
+);
+```
+
+* 高宽渐变
+```dart
+Animation<double> height = Tween<double>(
+    begin: 100.0,
+    end: 200.0,
+).animate(
+    CurvedAnimation(
+    parent: _controller,
+    curve: Interval(
+        0.375,
+        0.6,
+        curve: Curves.fastOutSlowIn,
+        ),
+    ),
+);
+
+Animation<double> width = Tween<double>(
+    begin: 100.0,
+    end: 200.0,
+).animate(
+    CurvedAnimation(
+    parent: _controller,
+    curve: Interval(
+        0.375,
+        0.6,
+        curve: Curves.fastOutSlowIn,
+        ),
+    ),
+);
+```
